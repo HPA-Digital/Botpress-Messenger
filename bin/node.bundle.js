@@ -285,7 +285,7 @@ module.exports = function (bp, messenger) {
       first_name: db.first_name,
       last_name: db.last_name,
       userId: db.userId,
-      id: 'facebook:' + db.userId
+      id: db.id
     };
   }
 
