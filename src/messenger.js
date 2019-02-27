@@ -107,10 +107,7 @@ class Messenger extends EventEmitter {
 
   async sendAttachment(recipientId, type, url, quickReplies, options) {
 
-    console.log('Attachment options:', options);
-
     let att_id = await db.hasAttachment(url);
-    console.log('Attachement ID: ', att_id);
 
     const message = {
       attachment: {
@@ -124,12 +121,10 @@ class Messenger extends EventEmitter {
     }
 
     if (options.attachmentId) {
-      console.log('Has attachment ID');
       message.attachment.payload = {
         attachment_id: options.attachmentId
       }
     } else if (options.isReusable && (await db.hasAttachment(url))) {
-      console.log('Is reusable and has attachment ID');
       const attachmentId = await db.getAttachment(url)
 
       message.attachment.payload = {
@@ -144,9 +139,8 @@ class Messenger extends EventEmitter {
       message.quick_replies = formattedQuickReplies
     }
 
-    console.log('SENDING MESSAGE?', message);
     return this.sendMessage(recipientId, message, options).then(res => {
-      console.log('MESSAGE SENT, HANDLING REPLY', res);
+      //NOTE: ATTACHMENT ID is not returned if that was used as part of dispatch.
       if (res && res.attachment_id) {
         db.addAttachment(url, res.attachment_id)
       }

@@ -700,17 +700,11 @@ var Messenger = function (_EventEmitter) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-
-                console.log('Attachment options:', options);
-
-                _context.next = 3;
+                _context.next = 2;
                 return db.hasAttachment(url);
 
-              case 3:
+              case 2:
                 att_id = _context.sent;
-
-                console.log('Attachement ID: ', att_id);
-
                 message = {
                   attachment: {
                     type: type,
@@ -724,64 +718,61 @@ var Messenger = function (_EventEmitter) {
                 }
 
                 if (!options.attachmentId) {
-                  _context.next = 12;
+                  _context.next = 9;
                   break;
                 }
 
-                console.log('Has attachment ID');
                 message.attachment.payload = {
                   attachment_id: options.attachmentId
                 };
-                _context.next = 26;
+                _context.next = 22;
                 break;
 
-              case 12:
+              case 9:
                 _context.t0 = options.isReusable;
 
                 if (!_context.t0) {
-                  _context.next = 17;
+                  _context.next = 14;
                   break;
                 }
 
-                _context.next = 16;
+                _context.next = 13;
                 return db.hasAttachment(url);
 
-              case 16:
+              case 13:
                 _context.t0 = _context.sent;
 
-              case 17:
+              case 14:
                 if (!_context.t0) {
-                  _context.next = 25;
+                  _context.next = 21;
                   break;
                 }
 
-                console.log('Is reusable and has attachment ID');
-                _context.next = 21;
+                _context.next = 17;
                 return db.getAttachment(url);
 
-              case 21:
+              case 17:
                 attachmentId = _context.sent;
 
 
                 message.attachment.payload = {
                   attachment_id: attachmentId
                 };
-                _context.next = 26;
+                _context.next = 22;
                 break;
 
-              case 25:
+              case 21:
                 message.attachment.payload.url = url;
 
-              case 26:
+              case 22:
                 formattedQuickReplies = this._formatQuickReplies(quickReplies);
 
                 if (formattedQuickReplies && formattedQuickReplies.length > 0) {
                   message.quick_replies = formattedQuickReplies;
                 }
 
-                console.log('SENDING MESSAGE?', message);
                 return _context.abrupt('return', this.sendMessage(recipientId, message, options).then(function (res) {
-                  console.log('MESSAGE SENT, HANDLING REPLY', res);
+                  //NOTE: ATTACHMENT ID is not returned if that was used as part of dispatch.
                   if (res && res.attachment_id) {
                     db.addAttachment(url, res.attachment_id);
                   }
@@ -789,7 +780,7 @@ var Messenger = function (_EventEmitter) {
                   console.log('ERROR:', err);
                 }));
 
-              case 30:
+              case 25:
               case 'end':
                 return _context.stop();
             }
