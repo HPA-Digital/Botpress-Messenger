@@ -106,6 +106,12 @@ class Messenger extends EventEmitter {
   }
 
   async sendAttachment(recipientId, type, url, quickReplies, options) {
+
+    console.log('Attachment options:', options);
+
+    let att_id = await db.hasAttachment(url);
+    console.log('Attachement ID: ', att_id);
+
     const message = {
       attachment: {
         type: type,
@@ -117,9 +123,9 @@ class Messenger extends EventEmitter {
       message.attachment.payload.is_reusable = options.isReusable
     }
 
-    if (options.attachmentId || options.attachment_id) {
+    if (options.attachmentId) {
       message.attachment.payload = {
-        attachment_id: options.attachment_id || options.attachmentId
+        attachment_id: options.attachmentId
       }
     } else if (options.isReusable && (await db.hasAttachment(url))) {
       const attachmentId = await db.getAttachment(url)

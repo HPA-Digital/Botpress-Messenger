@@ -695,11 +695,22 @@ var Messenger = function (_EventEmitter) {
     key: 'sendAttachment',
     value: function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(recipientId, type, url, quickReplies, options) {
-        var message, attachmentId, formattedQuickReplies;
+        var att_id, message, attachmentId, formattedQuickReplies;
         return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
+
+                console.log('Attachment options:', options);
+
+                _context.next = 3;
+                return db.hasAttachment(url);
+
+              case 3:
+                att_id = _context.sent;
+
+                console.log('Attachement ID: ', att_id);
+
                 message = {
                   attachment: {
                     type: type,
@@ -712,54 +723,54 @@ var Messenger = function (_EventEmitter) {
                   message.attachment.payload.is_reusable = options.isReusable;
                 }
 
-                if (!(options.attachmentId || options.attachment_id)) {
-                  _context.next = 6;
-                  break;
-                }
-
-                message.attachment.payload = {
-                  attachment_id: options.attachment_id || options.attachmentId
-                };
-                _context.next = 19;
-                break;
-
-              case 6:
-                _context.t0 = options.isReusable;
-
-                if (!_context.t0) {
+                if (!options.attachmentId) {
                   _context.next = 11;
                   break;
                 }
 
-                _context.next = 10;
-                return db.hasAttachment(url);
-
-              case 10:
-                _context.t0 = _context.sent;
+                message.attachment.payload = {
+                  attachment_id: options.attachmentId
+                };
+                _context.next = 24;
+                break;
 
               case 11:
+                _context.t0 = options.isReusable;
+
                 if (!_context.t0) {
-                  _context.next = 18;
+                  _context.next = 16;
                   break;
                 }
 
-                _context.next = 14;
+                _context.next = 15;
+                return db.hasAttachment(url);
+
+              case 15:
+                _context.t0 = _context.sent;
+
+              case 16:
+                if (!_context.t0) {
+                  _context.next = 23;
+                  break;
+                }
+
+                _context.next = 19;
                 return db.getAttachment(url);
 
-              case 14:
+              case 19:
                 attachmentId = _context.sent;
 
 
                 message.attachment.payload = {
                   attachment_id: attachmentId
                 };
-                _context.next = 19;
+                _context.next = 24;
                 break;
 
-              case 18:
+              case 23:
                 message.attachment.payload.url = url;
 
-              case 19:
+              case 24:
                 formattedQuickReplies = this._formatQuickReplies(quickReplies);
 
                 if (formattedQuickReplies && formattedQuickReplies.length > 0) {
@@ -776,7 +787,7 @@ var Messenger = function (_EventEmitter) {
                   console.log('ERROR:', err);
                 }));
 
-              case 23:
+              case 28:
               case 'end':
                 return _context.stop();
             }
