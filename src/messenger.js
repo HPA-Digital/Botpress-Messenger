@@ -124,10 +124,12 @@ class Messenger extends EventEmitter {
     }
 
     if (options.attachmentId) {
+      console.log('Has attachment ID');
       message.attachment.payload = {
         attachment_id: options.attachmentId
       }
     } else if (options.isReusable && (await db.hasAttachment(url))) {
+      console.log('Is reusable and has attachment ID');
       const attachmentId = await db.getAttachment(url)
 
       message.attachment.payload = {

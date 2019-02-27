@@ -150,7 +150,7 @@ function getAttachment(url) {
 
 function hasAttachment(url) {
   return knex('messenger_attachments').where('url', url).count('url as count').then(function (ret) {
-    return ret && ret[0] && ret[0].count === 1;
+    return ret && ret[0] && ret[0].count === "1";
   });
 }
 
@@ -724,53 +724,55 @@ var Messenger = function (_EventEmitter) {
                 }
 
                 if (!options.attachmentId) {
-                  _context.next = 11;
+                  _context.next = 12;
                   break;
                 }
 
+                console.log('Has attachment ID');
                 message.attachment.payload = {
                   attachment_id: options.attachmentId
                 };
-                _context.next = 24;
+                _context.next = 26;
                 break;
 
-              case 11:
+              case 12:
                 _context.t0 = options.isReusable;
 
                 if (!_context.t0) {
-                  _context.next = 16;
+                  _context.next = 17;
                   break;
                 }
 
-                _context.next = 15;
+                _context.next = 16;
                 return db.hasAttachment(url);
 
-              case 15:
+              case 16:
                 _context.t0 = _context.sent;
 
-              case 16:
+              case 17:
                 if (!_context.t0) {
-                  _context.next = 23;
+                  _context.next = 25;
                   break;
                 }
 
-                _context.next = 19;
+                console.log('Is reusable and has attachment ID');
+                _context.next = 21;
                 return db.getAttachment(url);
 
-              case 19:
+              case 21:
                 attachmentId = _context.sent;
 
 
                 message.attachment.payload = {
                   attachment_id: attachmentId
                 };
-                _context.next = 24;
+                _context.next = 26;
                 break;
 
-              case 23:
+              case 25:
                 message.attachment.payload.url = url;
 
-              case 24:
+              case 26:
                 formattedQuickReplies = this._formatQuickReplies(quickReplies);
 
                 if (formattedQuickReplies && formattedQuickReplies.length > 0) {
@@ -787,7 +789,7 @@ var Messenger = function (_EventEmitter) {
                   console.log('ERROR:', err);
                 }));
 
-              case 28:
+              case 30:
               case 'end':
                 return _context.stop();
             }
@@ -1882,6 +1884,8 @@ function _processOutgoing(_ref) {
       instruction = _ref.instruction;
 
   var ins = Object.assign({}, instruction); // Create a shallow copy of the instruction
+
+  console.log('Passed URL: ', ins.url);
 
   ////////
   // PRE-PROCESSING
