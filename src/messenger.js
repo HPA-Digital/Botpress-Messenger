@@ -107,8 +107,6 @@ class Messenger extends EventEmitter {
 
   async sendAttachment(recipientId, type, url, quickReplies, options) {
 
-    let att_id = await db.hasAttachment(url);
-
     const message = {
       attachment: {
         type: type,
