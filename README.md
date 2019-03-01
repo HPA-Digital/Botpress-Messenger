@@ -1,9 +1,21 @@
 
-# Botpress Messenger
+#
 
 ## Notice:
 
 This is an unofficial fork of the [Botpress Messenger](https://www.npmjs.com/package/@botpress/channel-messenger) module for [Botpress](https://botpress.io/)
+
+### Changes
+
+- [Fix to User IDs for facebook](https://github.com/botpress/botpress/pull/1499)
+- [Fix to is_reusable (isReusable internally)](https://github.com/botpress/botpress/pull/1499)
+
+
+
+Original Readme can be found below:
+---
+
+# Botpress Messenger
 
 ## Install
 
