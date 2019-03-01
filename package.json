@@ -1,21 +1,16 @@
 {
-  "name": "@botpress/channel-messenger",
-  "version": "10.51.10",
-  "description": "Official Facebook Messenger connector for botpress",
+  "name": "@hpa-digital/channel-messenger",
+  "version": "10.51.11",
+  "description": "Fork of the Official Botpress Facebook Messenger module by HPA-Digital",
   "main": "bin/node.bundle.js",
-  "homepage": "https://github.com/botpress/modules",
+  "homepage": "https://github.com/HPA-Digital/botpress-10",
   "botpress": {
     "menuText": "Messenger",
     "menuIcon": "custom",
     "webBundle": "bin/web.bundle.js",
     "noInterface": true
   },
-  "keywords": [
-    "messenger",
-    "facebook",
-    "botpress",
-    "botpress-connector"
-  ],
+  "keywords": ["messenger", "facebook", "botpress", "botpress-connector"],
   "publishConfig": {
     "access": "public"
   },
@@ -26,9 +21,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/botpress/modules"
+    "url": "https://github.com/HPA-Digital/botpress-10"
   },
-  "author": "Aran Mason & Botpress",
+  "author": "Botpress",
   "license": "AGPL-3.0-only",
   "peerDependencies": {
     "botpress": ">= 10.0.0"

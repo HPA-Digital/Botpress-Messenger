@@ -142,8 +142,6 @@ class Messenger extends EventEmitter {
       if (res && res.attachment_id) {
         db.addAttachment(url, res.attachment_id)
       }
-    }).catch(err => {
-      console.log('ERROR:', err);
     })
   }
 
@@ -164,7 +162,6 @@ class Messenger extends EventEmitter {
         },
         message
       })
-      console.log('SEND MESSAGE: ', req);
     if (options && options.typing) {
       const autoTimeout = message && message.text ? 500 + message.text.length * 10 : 1000
       const timeout = typeof options.typing === 'number' ? options.typing : autoTimeout

@@ -1,4 +1,9 @@
+
 # Botpress Messenger
+
+## Notice:
+
+This is an unofficial fork of the [Botpress Messenger](https://www.npmjs.com/package/@botpress/channel-messenger) module for [Botpress](https://botpress.io/)
 
 ## Install
 
@@ -116,7 +121,7 @@ bp.hear({ platform: 'facebook', type: 'postback', text: 'GET_STARTED' }, (event,
 
 In fact, this module preprocesses almost all types of message (message, attachment, postback, quick_reply, delivery, read, optin, referrals...) and send them to incoming middlewares. When you build a bot or a module, you can access to all information about incoming messages that have been send to  middlewares.
 
-<!--- 
+<!---
   need investigation for parameters
   https://botpress.io/docs/latest/reference/Middleware.html#.Event
   Do I need remove `user` parameter?

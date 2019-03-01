@@ -81,8 +81,6 @@ function getUserId(event) {
 function processOutgoing({ event, blocName, instruction }) {
   const ins = Object.assign({}, instruction) // Create a shallow copy of the instruction
 
-  console.log('Passed URL: ', ins.url);
-
   ////////
   // PRE-PROCESSING
   ////////
