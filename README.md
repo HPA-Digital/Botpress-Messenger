@@ -8,7 +8,7 @@ This is an unofficial fork of the [Botpress Messenger](https://www.npmjs.com/pac
 ### Changes
 
 - [Fix to User IDs for facebook](https://github.com/botpress/botpress/pull/1499)
-- [Fix to is_reusable (isReusable internally)](https://github.com/botpress/botpress/pull/1499)
+- [Fix to is_reusable (isReusable internally)](https://github.com/botpress/botpress/pull/1499) allowing content to be served to the user from facebook itself.
 
 
 
