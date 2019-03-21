@@ -670,11 +670,6 @@ var Messenger = function (_EventEmitter) {
       var formattedButtons = this._formatButtons(buttons);
       payload.buttons = formattedButtons;
 
-      var formattedQuickReplies = this._formatQuickReplies(options.quick_replies);
-      if (formattedQuickReplies && formattedQuickReplies.length > 0) {
-        message.quick_replies = formattedQuickReplies;
-      }
-
       return this.sendTemplate(recipientId, payload, options);
     }
   }, {
@@ -696,8 +691,9 @@ var Messenger = function (_EventEmitter) {
         }
       };
 
-      if (options.quick_replies) {
-        message.quick_replies = options.quick_replies;
+      var formattedQuickReplies = this._formatQuickReplies(options.quick_replies);
+      if (formattedQuickReplies && formattedQuickReplies.length > 0) {
+        message.quick_replies = formattedQuickReplies;
       }
 
       console.log('Sending: ', message, 'Options: ', options);
