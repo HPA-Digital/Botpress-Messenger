@@ -191,9 +191,10 @@ const createTemplate = (userId, payload, options) => {
       to: userId,
       payload: payload,
       typing: options && options.typing,
+      quick_replies: options && options.quick_replies,
       waitRead: options && options.waitRead,
       waitDelivery: options && options.waitDelivery
-    }
+    },
   })
 }
 
