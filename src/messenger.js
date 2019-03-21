@@ -100,8 +100,13 @@ class Messenger extends EventEmitter {
       attachment: {
         type: 'template',
         payload
-      }
+      },
     }
+
+    if(options.quick_replies){
+      message.quick_replies = options.quick_replies;
+    }
+
     return this.sendMessage(recipientId, message, options)
   }
 

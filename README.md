@@ -9,7 +9,7 @@ This is an unofficial fork of the [Botpress Messenger](https://www.npmjs.com/pac
 
 - [Fix to User IDs for facebook](https://github.com/botpress/botpress/pull/1499)
 - [Fix to is_reusable (isReusable internally)](https://github.com/botpress/botpress/pull/1499)
-
+- Facebook buttons can also now support quick replies as well.
 
 
 Original Readme can be found below:

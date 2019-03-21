@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="10.51.12"></a>
+## [10.51.10](https://github.com/botpress/modules/compare/v10.51.9...v10.51.10) (2019-01-19)
+
+### Bug Fixes
+
+* **messenger:** Fixed reusable assets for SQLite
+* **messenger:** Fixed user id's storage from Facebook (This should also fix Facebook user tags)
+
+
+<a name="10.51.11"></a>
+## [10.51.10](https://github.com/botpress/modules/compare/v10.51.9...v10.51.10) (2019-01-19)
+
+### Bug Fixes
+
+* **messenger:** Fixed attachment_id and is_reusable handling, so media content is not repeatedly uploaded.
+
+
 <a name="10.51.10"></a>
 ## [10.51.10](https://github.com/botpress/modules/compare/v10.51.9...v10.51.10) (2019-01-19)
 
