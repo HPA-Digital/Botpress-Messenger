@@ -84,6 +84,12 @@ class Messenger extends EventEmitter {
     }
     const formattedButtons = this._formatButtons(buttons)
     payload.buttons = formattedButtons
+
+    const formattedQuickReplies = this._formatQuickReplies(options.quick_replies)
+    if (formattedQuickReplies && formattedQuickReplies.length > 0) {
+      message.quick_replies = formattedQuickReplies
+    }
+
     return this.sendTemplate(recipientId, payload, options)
   }
 
@@ -106,6 +112,8 @@ class Messenger extends EventEmitter {
     if(options.quick_replies){
       message.quick_replies = options.quick_replies;
     }
+
+    console.log('Sending: ', message, 'Options: ', options);
 
     return this.sendMessage(recipientId, message, options)
   }
