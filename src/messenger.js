@@ -109,8 +109,6 @@ class Messenger extends EventEmitter {
       message.quick_replies = formattedQuickReplies
     }
 
-    console.log('Sending: ', message, 'Options: ', options);
-
     return this.sendMessage(recipientId, message, options)
   }
 
