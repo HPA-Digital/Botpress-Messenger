@@ -201,7 +201,8 @@ class Messenger extends EventEmitter {
     endpoint = endpoint || 'messages'
     method = method || 'POST'
 
-    const url = `https://graph.facebook.com/v${this.config.graphVersion}/me/${endpoint}`
+	const url = `https://graph.facebook.com/v${this.config.graphVersion}/me/${endpoint}`
+	console.log('SENDING: ', url);
     return fetch(`${url}?access_token=${this.config.accessToken}`, {
       method,
       headers: { 'Content-Type': 'application/json' },

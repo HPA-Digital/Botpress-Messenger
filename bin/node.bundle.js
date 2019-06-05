@@ -58,7 +58,7 @@ module.exports =
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "C:\\Users\\AranM\\Projects\\botpress-10\\packages\\channels\\botpress-channel-messenger";
+/******/ 	__webpack_require__.p = "C:\\Users\\AranM\\Projects\\botpress-10\\Botpress-Messenger";
 /******/
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(__webpack_require__.s = 5);
@@ -178,7 +178,7 @@ var _ = __webpack_require__(0);
 
 module.exports = function (bp, messenger) {
   var getOrFetchUserProfile = function () {
-    var _ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee(userId) {
+    var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(userId) {
       var knex, user, profile;
       return regeneratorRuntime.wrap(function _callee$(_context) {
         while (1) {
@@ -231,7 +231,7 @@ module.exports = function (bp, messenger) {
   }();
 
   var getAllUsers = function () {
-    var _ref2 = _asyncToGenerator(regeneratorRuntime.mark(function _callee2() {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
       var knex, users;
       return regeneratorRuntime.wrap(function _callee2$(_context2) {
         while (1) {
@@ -378,7 +378,7 @@ var outgoingMiddleware = function outgoingMiddleware(event, next) {
 };
 
 var initializeMessenger = function () {
-  var _ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee(bp, configurator) {
+  var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(bp, configurator) {
     var config, enabled;
     return regeneratorRuntime.wrap(function _callee$(_context) {
       while (1) {
@@ -470,7 +470,7 @@ module.exports = {
   },
 
   init: function () {
-    var _ref2 = _asyncToGenerator(regeneratorRuntime.mark(function _callee2(bp) {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(bp) {
       var knex;
       return regeneratorRuntime.wrap(function _callee2$(_context2) {
         while (1) {
@@ -515,7 +515,7 @@ module.exports = {
   }(),
 
   ready: function () {
-    var _ref3 = _asyncToGenerator(regeneratorRuntime.mark(function _callee3(bp, config) {
+    var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(bp, config) {
       return regeneratorRuntime.wrap(function _callee3$(_context3) {
         while (1) {
           switch (_context3.prev = _context3.next) {
@@ -701,7 +701,7 @@ var Messenger = function (_EventEmitter) {
   }, {
     key: 'sendAttachment',
     value: function () {
-      var _ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee(recipientId, type, url, quickReplies, options) {
+      var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(recipientId, type, url, quickReplies, options) {
         var message, attachmentId, formattedQuickReplies;
         return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
@@ -854,6 +854,7 @@ var Messenger = function (_EventEmitter) {
       method = method || 'POST';
 
       var url = 'https://graph.facebook.com/v' + this.config.graphVersion + '/me/' + endpoint;
+      console.log('SENDING: ', url);
       return fetch(url + '?access_token=' + this.config.accessToken, {
         method: method,
         headers: { 'Content-Type': 'application/json' },
@@ -1590,7 +1591,7 @@ module.exports = function (bp, messenger) {
 
   messenger.on('postback', function (e) {
     preprocessEvent(e).then(function () {
-      var _ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee(profile) {
+      var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(profile) {
         var mConfig, options;
         return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
