@@ -843,6 +843,8 @@ var Messenger = function (_EventEmitter) {
         })
       }).then(this._handleFacebookResponse).then(function (res) {
         return res.json();
+      }).catch(function (err) {
+        return console.log("Error sending validation request: ", err);
       });
     }
   }, {
@@ -871,6 +873,8 @@ var Messenger = function (_EventEmitter) {
           response: json
         });
         return json;
+      }).catch(function (err) {
+        return console.error('Error sending request (' + method + ' : ' + url + ' - ' + body + '):', err);
       });
     }
   }, {
@@ -1409,6 +1413,10 @@ var Messenger = function (_EventEmitter) {
 
       var url = 'https://graph.facebook.com/v' + this.config.graphVersion + '/' + this.config.applicationID + '/subscriptions?access_token=';
 
+      if (process.env.NODE_ENV != "production") {
+        console.log("Setting up new Webhook", oAuthUrl, url);
+      }
+
       return fetch(oAuthUrl).then(this._handleFacebookResponse).then(function (res) {
         return res.json();
       }).then(function (json) {
@@ -1426,6 +1434,8 @@ var Messenger = function (_EventEmitter) {
         });
       }).then(this._handleFacebookResponse).then(function (res) {
         return res.json();
+      }).catch(function (err) {
+        console.log("Error setting up webhook", err);
       });
     }
   }, {
@@ -1441,7 +1451,7 @@ var Messenger = function (_EventEmitter) {
       }).then(this._handleFacebookResponse).then(function (res) {
         return res.json();
       }).catch(function (err) {
-        return console.log(err);
+        return console.log("Error in Subscribe Page: ", err);
       });
     }
   }, {
@@ -1452,7 +1462,7 @@ var Messenger = function (_EventEmitter) {
       return fetch(url, { method: 'DELETE' }).then(this._handleFacebookResponse).then(function (res) {
         return res.json();
       }).catch(function (err) {
-        return console.log(err);
+        return console.log("Error ubsubscribing page: ", err);
       });
     }
   }, {
@@ -1463,7 +1473,7 @@ var Messenger = function (_EventEmitter) {
       return fetch(url, { method: 'GET' }).then(this._handleFacebookResponse).then(function (res) {
         return res.json();
       }).catch(function (err) {
-        return console.log(err);
+        return console.log("Error Getting Page: ", err);
       });
     }
   }]);
