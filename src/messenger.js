@@ -490,6 +490,7 @@ class Messenger extends EventEmitter {
     )
 
 	if(profileFields.delete.length > 0){
+		console.log("Fields: ", profileFields.delete)
 		this.sendRequest({ fields: profileFields.delete }, 'messenger_profile', 'DELETE')
 	}
     this.sendRequest(profileFields.update, 'messenger_profile', 'POST')
