@@ -949,6 +949,7 @@ var Messenger = function (_EventEmitter) {
     key: 'deleteChatExtensionHomeUrl',
     value: function deleteChatExtensionHomeUrl() {
       var setting = this.deleteChatExtensionHomeUrlSetting();
+      console.log("SETTINGS: ", settings); //TODO: TEST
       return this.sendRequest(setting, 'messenger_profile', 'DELETE');
     }
   }, {

@@ -286,7 +286,8 @@ class Messenger extends EventEmitter {
   }
 
   deleteChatExtensionHomeUrl() {
-    const setting = this.deleteChatExtensionHomeUrlSetting()
+	const setting = this.deleteChatExtensionHomeUrlSetting()
+	console.log("SETTINGS: ", settings) //TODO: TEST
     return this.sendRequest(setting, 'messenger_profile', 'DELETE')
   }
 
