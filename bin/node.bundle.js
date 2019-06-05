@@ -1555,6 +1555,11 @@ module.exports = function (bp, messenger) {
   });
 
   var preprocessEvent = function preprocessEvent(payload) {
+
+    if (process.env.NODE_ENV != "production") {
+      console.log("Message Payload: ", payload);
+    }
+
     var userId = payload.sender && payload.sender.id;
     var mid = payload.message && payload.message.mid;
 
