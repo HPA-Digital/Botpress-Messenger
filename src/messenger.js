@@ -195,7 +195,7 @@ class Messenger extends EventEmitter {
     })
       .then(this._handleFacebookResponse)
 	  .then(res => res.json())
-	  .catch(err => console.log("Error sending validation request: ", err))
+	  .catch(err => console.error("Error sending validation request: ", err))
   }
 
   sendRequest(body, endpoint, method) {
@@ -222,7 +222,7 @@ class Messenger extends EventEmitter {
         })
         return json
 	  })
-	  .catch(err => console.error(`Error sending request (${method} : ${url} - ${body}):`, err))
+	  .catch(err => console.error(`Error sending request (${method} : ${url}):`, err, body))
   }
 
   sendThreadRequest(body, method) {
@@ -254,7 +254,7 @@ class Messenger extends EventEmitter {
     return fetch(url)
       .then(this._handleFacebookResponse)
       .then(res => res.json())
-      .catch(err => console.log(`Error getting user profile: ${err}`))
+      .catch(err => console.error(`Error getting user profile: ${err}`))
   }
 
   /**
@@ -743,7 +743,7 @@ class Messenger extends EventEmitter {
       .then(this._handleFacebookResponse)
 	  .then(res => res.json())
 	  .catch(err => {
-		  console.log("Error setting up webhook", err);
+		  console.error("Error setting up webhook", err);
 	  })
   }
 
@@ -766,7 +766,7 @@ class Messenger extends EventEmitter {
     })
       .then(this._handleFacebookResponse)
       .then(res => res.json())
-      .catch(err => console.log("Error in Subscribe Page: ", err))
+      .catch(err => console.error("Error in Subscribe Page: ", err))
   }
 
   _unsubscribePage() {
@@ -777,7 +777,7 @@ class Messenger extends EventEmitter {
     return fetch(url, { method: 'DELETE' })
       .then(this._handleFacebookResponse)
       .then(res => res.json())
-      .catch(err => console.log("Error ubsubscribing page: ", err))
+      .catch(err => console.error("Error ubsubscribing page: ", err))
   }
 
   _getPage() {
@@ -786,7 +786,7 @@ class Messenger extends EventEmitter {
     return fetch(url, { method: 'GET' })
       .then(this._handleFacebookResponse)
       .then(res => res.json())
-      .catch(err => console.log("Error Getting Page: ", err))
+      .catch(err => console.error("Error Getting Page: ", err))
   }
 }
 

@@ -844,7 +844,7 @@ var Messenger = function (_EventEmitter) {
       }).then(this._handleFacebookResponse).then(function (res) {
         return res.json();
       }).catch(function (err) {
-        return console.log("Error sending validation request: ", err);
+        return console.error("Error sending validation request: ", err);
       });
     }
   }, {
@@ -874,7 +874,7 @@ var Messenger = function (_EventEmitter) {
         });
         return json;
       }).catch(function (err) {
-        return console.error('Error sending request (' + method + ' : ' + url + ' - ' + body + '):', err);
+        return console.error('Error sending request (' + method + ' : ' + url + '):', err, body);
       });
     }
   }, {
@@ -910,7 +910,7 @@ var Messenger = function (_EventEmitter) {
       return fetch(url).then(this._handleFacebookResponse).then(function (res) {
         return res.json();
       }).catch(function (err) {
-        return console.log('Error getting user profile: ' + err);
+        return console.error('Error getting user profile: ' + err);
       });
     }
 
@@ -1435,7 +1435,7 @@ var Messenger = function (_EventEmitter) {
       }).then(this._handleFacebookResponse).then(function (res) {
         return res.json();
       }).catch(function (err) {
-        console.log("Error setting up webhook", err);
+        console.error("Error setting up webhook", err);
       });
     }
   }, {
@@ -1451,7 +1451,7 @@ var Messenger = function (_EventEmitter) {
       }).then(this._handleFacebookResponse).then(function (res) {
         return res.json();
       }).catch(function (err) {
-        return console.log("Error in Subscribe Page: ", err);
+        return console.error("Error in Subscribe Page: ", err);
       });
     }
   }, {
@@ -1462,7 +1462,7 @@ var Messenger = function (_EventEmitter) {
       return fetch(url, { method: 'DELETE' }).then(this._handleFacebookResponse).then(function (res) {
         return res.json();
       }).catch(function (err) {
-        return console.log("Error ubsubscribing page: ", err);
+        return console.error("Error ubsubscribing page: ", err);
       });
     }
   }, {
@@ -1473,7 +1473,7 @@ var Messenger = function (_EventEmitter) {
       return fetch(url, { method: 'GET' }).then(this._handleFacebookResponse).then(function (res) {
         return res.json();
       }).catch(function (err) {
-        return console.log("Error Getting Page: ", err);
+        return console.error("Error Getting Page: ", err);
       });
     }
   }]);
