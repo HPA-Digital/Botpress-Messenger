@@ -180,7 +180,7 @@ class Messenger extends EventEmitter {
 
   sendValidationRequest() {
     const applicationID = this.config.applicationID
-    const accessToken = this.config.accessToken
+	const accessToken = this.config.accessToken
 
     return fetch(`https://graph.facebook.com/v${this.config.graphVersion}/${applicationID}/subscriptions_sample`, {
       method: 'POST',
@@ -194,7 +194,8 @@ class Messenger extends EventEmitter {
       })
     })
       .then(this._handleFacebookResponse)
-      .then(res => res.json())
+	  .then(res => res.json())
+	  .catch(err => console.log("Error sending validation request: ", err))
   }
 
   sendRequest(body, endpoint, method) {
@@ -220,7 +221,8 @@ class Messenger extends EventEmitter {
           response: json
         })
         return json
-      })
+	  })
+	  .catch(err => console.error(`Error sending request (${method} : ${url} - ${body}):`, err))
   }
 
   sendThreadRequest(body, method) {
@@ -703,6 +705,8 @@ class Messenger extends EventEmitter {
   }
 
   _setupNewWebhook() {
+
+
     const oAuthUrl =
       `https://graph.facebook.com/v${this.config.graphVersion}/oauth/access_token` +
       '?client_id=' +
@@ -713,6 +717,12 @@ class Messenger extends EventEmitter {
 
     const url = `https://graph.facebook.com/v${this.config.graphVersion}/${this.config
       .applicationID}/subscriptions?access_token=`
+
+
+	if(process.env.NODE_ENV != "production"){
+		console.log("Setting up new Webhook", oAuthUrl, url);
+	}
+
 
     return fetch(oAuthUrl)
       .then(this._handleFacebookResponse)
@@ -731,7 +741,10 @@ class Messenger extends EventEmitter {
         })
       )
       .then(this._handleFacebookResponse)
-      .then(res => res.json())
+	  .then(res => res.json())
+	  .catch(err => {
+		  console.log("Error setting up webhook", err);
+	  })
   }
 
   _subscribePage() {
@@ -753,7 +766,7 @@ class Messenger extends EventEmitter {
     })
       .then(this._handleFacebookResponse)
       .then(res => res.json())
-      .catch(err => console.log(err))
+      .catch(err => console.log("Error in Subscribe Page: ", err))
   }
 
   _unsubscribePage() {
@@ -764,7 +777,7 @@ class Messenger extends EventEmitter {
     return fetch(url, { method: 'DELETE' })
       .then(this._handleFacebookResponse)
       .then(res => res.json())
-      .catch(err => console.log(err))
+      .catch(err => console.log("Error ubsubscribing page: ", err))
   }
 
   _getPage() {
@@ -773,7 +786,7 @@ class Messenger extends EventEmitter {
     return fetch(url, { method: 'GET' })
       .then(this._handleFacebookResponse)
       .then(res => res.json())
-      .catch(err => console.log(err))
+      .catch(err => console.log("Error Getting Page: ", err))
   }
 }
 
