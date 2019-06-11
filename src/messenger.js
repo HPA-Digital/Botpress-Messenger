@@ -660,7 +660,9 @@ class Messenger extends EventEmitter {
             this._handleEvent('referral', event)
           } else if (event.payment) {
             this._handleEvent('payment', event)
-          } else {
+          } else if (event.game_play) {
+			this._handleEvent('game', event)
+		  }else {
             console.log('Webhook received unknown event: ', event)
           }
         })
