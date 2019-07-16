@@ -856,7 +856,7 @@ var Messenger = function (_EventEmitter) {
       method = method || 'POST';
 
       var url = 'https://graph.facebook.com/v' + this.config.graphVersion + '/me/' + endpoint;
-      console.log('SENDING: ', url);
+
       return fetch(url + '?access_token=' + this.config.accessToken, {
         method: method,
         headers: { 'Content-Type': 'application/json' },
@@ -949,7 +949,6 @@ var Messenger = function (_EventEmitter) {
     key: 'deleteChatExtensionHomeUrl',
     value: function deleteChatExtensionHomeUrl() {
       var setting = this.deleteChatExtensionHomeUrlSetting();
-      console.log("SETTINGS: ", settings); //TODO: TEST
       return this.sendRequest(setting, 'messenger_profile', 'DELETE');
     }
   }, {
@@ -1184,7 +1183,6 @@ var Messenger = function (_EventEmitter) {
       }, { update: {}, delete: [] });
 
       if (profileFields.delete.length > 0) {
-        console.log("Fields: ", profileFields.delete);
         this.sendRequest({ fields: profileFields.delete }, 'messenger_profile', 'DELETE');
       }
       this.sendRequest(profileFields.update, 'messenger_profile', 'POST');
@@ -1359,8 +1357,10 @@ var Messenger = function (_EventEmitter) {
               _this7._handleEvent('referral', event);
             } else if (event.payment) {
               _this7._handleEvent('payment', event);
+            } else if (event.game_play) {
+              _this7._handleEvent('game', event);
             } else {
-              console.log('Webhook received unknown event: ', event);
+              console.error('Webhook received unknown event: ', event);
             }
           });
         });
@@ -1555,10 +1555,6 @@ module.exports = function (bp, messenger) {
   });
 
   var preprocessEvent = function preprocessEvent(payload) {
-
-    if (process.env.NODE_ENV != "production") {
-      console.log("Message Payload: ", payload);
-    }
 
     var userId = payload.sender && payload.sender.id;
     var mid = payload.message && payload.message.mid;
@@ -1777,6 +1773,19 @@ module.exports = function (bp, messenger) {
         text: 'payment',
         user: profile,
         payment: e.payment,
+        raw: e
+      });
+    });
+  });
+
+  messenger.on('game', function (e) {
+    preprocessEvent(e).then(function (profile) {
+      bp.middlewares.sendIncoming({
+        platform: 'facebook',
+        type: 'game',
+        text: 'Facebook Game',
+        user: profile,
+        game_play: e.game_play,
         raw: e
       });
     });

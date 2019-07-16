@@ -16,10 +16,6 @@ module.exports = (bp, messenger) => {
 
   const preprocessEvent = payload => {
 
-	if(process.env.NODE_ENV != "production"){
-		console.log("Message Payload: ", payload);
-	}
-
     const userId = payload.sender && payload.sender.id
     const mid = payload.message && payload.message.mid
 

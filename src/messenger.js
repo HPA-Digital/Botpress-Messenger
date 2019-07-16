@@ -203,7 +203,7 @@ class Messenger extends EventEmitter {
     method = method || 'POST'
 
 	const url = `https://graph.facebook.com/v${this.config.graphVersion}/me/${endpoint}`
-	console.log('SENDING: ', url);
+
     return fetch(`${url}?access_token=${this.config.accessToken}`, {
       method,
       headers: { 'Content-Type': 'application/json' },
@@ -287,7 +287,6 @@ class Messenger extends EventEmitter {
 
   deleteChatExtensionHomeUrl() {
 	const setting = this.deleteChatExtensionHomeUrlSetting()
-	console.log("SETTINGS: ", settings) //TODO: TEST
     return this.sendRequest(setting, 'messenger_profile', 'DELETE')
   }
 
@@ -490,7 +489,6 @@ class Messenger extends EventEmitter {
     )
 
 	if(profileFields.delete.length > 0){
-		console.log("Fields: ", profileFields.delete)
 		this.sendRequest({ fields: profileFields.delete }, 'messenger_profile', 'DELETE')
 	}
     this.sendRequest(profileFields.update, 'messenger_profile', 'POST')
@@ -663,7 +661,7 @@ class Messenger extends EventEmitter {
           } else if (event.game_play) {
 			this._handleEvent('game', event)
 		  }else {
-            console.log('Webhook received unknown event: ', event)
+            console.error('Webhook received unknown event: ', event)
           }
         })
       })
