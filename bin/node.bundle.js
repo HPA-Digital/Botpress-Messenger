@@ -209,7 +209,7 @@ module.exports = function (bp, messenger) {
 
             case 11:
               _context.t1 = _context.sent;
-              _context.t2 = { id: userId };
+              _context.t2 = { id: userId, userId: userId };
               profile = _context.t0.assign.call(_context.t0, _context.t1, _context.t2);
               _context.next = 16;
               return bp.db.saveUser(profileToDbEntry(profile));
