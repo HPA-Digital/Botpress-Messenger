@@ -265,7 +265,7 @@ module.exports = function (bp, messenger) {
   function profileToDbEntry(profile) {
     return {
       id: /**'facebook:' + */profile.id,
-      //userId: profile.id,
+      userId: profile.id,
       platform: 'facebook',
       gender: profile.gender,
       timezone: profile.timezone,
