@@ -41,7 +41,7 @@ module.exports = function(bp, messenger) {
       return dbEntryToProfile(user)
     }
 
-    const profile = Object.assign(await messenger.getUserProfile(userId), { id: userId })
+    const profile = Object.assign(await messenger.getUserProfile(userId), { id: userId, userId })
     await bp.db.saveUser(profileToDbEntry(profile))
 
     return profile
