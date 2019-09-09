@@ -538,6 +538,7 @@ class Messenger extends EventEmitter {
   }
 
   _handleEvent(type, event) {
+	this.bp.logger.debug(`[Messenger]: Emmitting: ${type} event`)
     this.emit(type, event)
   }
 
@@ -635,7 +636,8 @@ class Messenger extends EventEmitter {
         entry.messaging.forEach(event => {
           if (event.message && event.message.is_echo && !this.config.broadcastEchoes) {
             return
-          }
+		  }
+
           if (event.message && event.message.text) {
             if (event.message.quick_reply) {
               this._handleQuickReplyEvent(event)
