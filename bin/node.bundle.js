@@ -1230,7 +1230,7 @@ var Messenger = function (_EventEmitter) {
   }, {
     key: '_handleEvent',
     value: function _handleEvent(type, event) {
-      this.bp.logger.debug('[Messenger]: Emmitting: ' + type + ' event');
+      this.bp.logger.debug('[Messenger]: Emmitting: ' + type, event);
       this.emit(type, event);
     }
   }, {
