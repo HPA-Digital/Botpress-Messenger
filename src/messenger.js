@@ -538,7 +538,6 @@ class Messenger extends EventEmitter {
   }
 
   _handleEvent(type, event) {
-	this.bp.logger.debug(`[Messenger]: Emmitting: ${type}`, event);
     this.emit(type, event)
   }
 

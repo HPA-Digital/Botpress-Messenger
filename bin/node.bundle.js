@@ -58,7 +58,7 @@ module.exports =
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "C:\\Users\\AranM\\Projects\\maori\\Botpress\\Botpress-Messenger";
+/******/ 	__webpack_require__.p = "C:\\Users\\AranM\\Projects\\maori\\Botpress-Messenger";
 /******/
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(__webpack_require__.s = 5);
@@ -1230,7 +1230,6 @@ var Messenger = function (_EventEmitter) {
   }, {
     key: '_handleEvent',
     value: function _handleEvent(type, event) {
-      this.bp.logger.debug('[Messenger]: Emmitting: ' + type, event);
       this.emit(type, event);
     }
   }, {
